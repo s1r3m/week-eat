@@ -1,0 +1,119 @@
+[tool.poetry]
+name = "week_eat_planner"
+version = "0.0.0"
+description = "My Menu Planner app to get a shopping list for a week in a click."
+authors = ["Filipp Aleksandrov <falexandrov@gmail.com>"]
+maintainers = ["Filipp Aleksandrov <falexandrov@gmail.com>"]
+readme = "./README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+fastapi = {extras = ["standard"], version = "^0.115.6"}
+uvicorn = {extras = ["standard"], version = "^0.34.0"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^8.3.4"
+pytest-asyncio = "^0.25.0"
+black = "23.3.0"
+mypy = "^1.13.0"
+pylint = "2.15.10"
+types-ujson = "^5.10.0.20240515"
+
+
+[tool.black]
+line-length = 120
+skip-string-normalization = true
+
+[tool.pytest.ini_options]
+xfail_strict = true
+filterwarnings = [
+    'ignore::Warning',
+]
+addopts = '--tb=short -vv'
+
+[tool.mypy]
+python_version = "3.11"
+plugins = "pydantic.mypy"
+
+exclude = [
+    '/test_.*',
+]
+
+ignore_missing_imports = true
+show_column_numbers = true
+show_absolute_path = true
+
+allow_redefinition = true
+no_implicit_reexport = true
+strict_equality = true
+
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_calls = true
+
+warn_unused_ignores = true
+warn_unused_configs = true
+warn_incomplete_stub = true
+warn_redundant_casts = true
+warn_unreachable = true
+show_error_codes = true
+
+no_implicit_optional = true
+
+[tool.pylint.MASTER]
+# Use multiple processes to speed up Pylint.
+jobs = 0
+
+[tool.pylint.FORMAT]
+# Maximum number of characters on a single line.
+max-line-length = 120
+
+[tool.pylint.'MESSAGES CONTROL']
+# Disable the message, report, category or checker with the given id(s).
+disable = '''
+    fixme,
+    missing-docstring,
+    too-many-arguments,
+    too-few-public-methods,
+    redefined-outer-name,
+    no-member,
+    import-outside-toplevel,
+'''
+
+[tool.pylint.BASIC]
+# Regular expression matching correct argument names. Overrides argument-naming-style
+argument-rgx = '[a-z_][a-z0-9_]{1,60}$'
+
+# Regular expression matching correct function names. Overrides function-naming-style.
+function-rgx = '[a-z_][a-z0-9_]{2,115}$'
+
+# Good variable names which should always be accepted, separated by a comma.
+good-names = 'i,j,k,v,f,e,x,y,z,_,logger,pytestmark'
+
+# Regular expression matching correct method names.
+method-rgx = '[a-z_][A-Za-z0-9_]{1,100}$'
+
+# Regular expression matching correct variable names.
+variable-rgx = '[a-z_][a-z0-9_]{1,60}$'
+
+# Regular expression matching correct class attribute names
+class-attribute-rgx = '([A-Za-z_][A-Za-z0-9_]{1,60}|(__.*__))$'
+
+# Include a hint for the correct naming format with invalid-name
+include-naming-hint = 'yes'
+
+[tool.pylint.REPORTS]
+# Template used to display messages. This is a python new-style format string
+# used to format the message information. See doc for all details.
+msg-template = '{abspath}:{line}:{obj} [{symbol}({msg_id})] {msg}'
+
+[tool.pylint.DESIGN]
+# Maximum number of locals for function / method body
+max-locals = 25
+
+# Maximum number of public methods for a class (see R0904).
+max-public-methods = 100
+
+[tool.pylint.SIMILARITIES]
+# Ignore imports when computing similarities.
+ignore-imports = 'yes'
