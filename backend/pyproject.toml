@@ -25,11 +25,12 @@ line-length = 120
 skip-string-normalization = true
 
 [tool.pytest.ini_options]
+asyncio_mode = "auto"
 xfail_strict = true
 filterwarnings = [
-    'ignore::Warning',
+    "ignore::Warning",
 ]
-addopts = '--tb=short -vv'
+addopts = "--tb=short -vv"
 
 [tool.mypy]
 python_version = "3.11"

@@ -4,7 +4,7 @@ import React from "react";
 function Header() {
     return (
         <header>
-            <h1>Week Eat Menu Planner</h1>
+            <h1>Week Eat Planner</h1>
         </header>
     );
 }
