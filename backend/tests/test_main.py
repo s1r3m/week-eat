@@ -1,7 +1,7 @@
 import httpx
 import pytest_asyncio
 
-APP_HOST = 'http://127.0.0.1:8000'
+from settings import APP_HOST
 
 
 @pytest_asyncio.fixture

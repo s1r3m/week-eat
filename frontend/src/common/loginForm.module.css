@@ -1,0 +1,50 @@
+.container {
+    width: 700px;
+    border: 1px solid grey;
+    padding: 30px;
+    margin: 50px auto;
+    font-size: 24px;
+}
+
+.login {
+    width: 700px;
+    border: 1px solid grey;
+    margin: 50px auto;
+    font-size: 24px;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+label {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+
+input {
+    width: 60%;
+    align-self: end;
+    height: 24px;
+    font-size: 20px;
+}
+
+.submit {
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 25px auto;
+    background-color: var(--dark-green);
+    color: var(--cream);
+    border: 1px solid var(--dark-brown);
+}
+
+.title {
+    text-align: center;
+    font-size: 32px;
+}
