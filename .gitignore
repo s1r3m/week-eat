@@ -1,5 +1,9 @@
 .idea/
 __pycache__/
+.mypy_cache/
+.pytest_cache/
 .venv*/
+
+.vscode/
 
 */node_modules/
