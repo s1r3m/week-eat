@@ -1,14 +1,15 @@
 services:
   backend:
+    container_name: wep
     build:
       context: ./backend
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      - ./backend/week_eat_planner:/app
+      - ./backend:/app
     environment:
-      - DATABASE_URL=postgres://wep:wep@db:5432/wep
+      - DB_URL=postgresql+psycopg://wep:wep@db:5432/wep
   frontend:
     build:
       context: ./frontend
@@ -24,9 +25,9 @@ services:
       POSTGRES_USER: wep
       POSTGRES_PASSWORD: wep
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/datare
     ports:
-      - "15432:5432"
+      - "5432:5432"
 
 volumes:
   postgres_data:
