@@ -72,11 +72,7 @@ stop:
 	docker-compose down --volumes
 
 in:
-	docker exec -it wep bash
-
-reload:
-	cd docker && docker-compose restart wep
-
+	docker exec -it week-eat-planner-backend-1 bash
 
 be_debug: $(VENV_ACTIVATE)
 	cd $(BE_PATH) && uvicorn week_eat_planner.main:app --host 0.0.0.0 --port 8000
