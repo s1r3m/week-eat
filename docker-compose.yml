@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/week_eat_planner:/app
+    environment:
+      - DATABASE_URL=postgres://wep:wep@db:5432/wep
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: wep
+      POSTGRES_USER: wep
+      POSTGRES_PASSWORD: wep
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "15432:5432"
+
+volumes:
+  postgres_data:
