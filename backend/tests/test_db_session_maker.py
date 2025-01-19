@@ -4,13 +4,13 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from week_eat_planner.dao.session_maker_fast_api import DatabaseSession
 
+
 @pytest_asyncio.fixture
 async def mock_session(mocker) -> AsyncSession:
     mock_session = mocker.AsyncMock(spec=AsyncSession)
     mock_session.__aenter__.return_value = mock_session
     mock_session.__aexit__.return_value = None
     return mock_session
-
 
 
 @pytest_asyncio.fixture(autouse=True)

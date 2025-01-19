@@ -20,9 +20,9 @@ def loop():
 @pytest_asyncio.fixture
 async def manager() -> AsyncGenerator[HttpClientManager, None]:
     manager = HttpClientManager()
-    
+
     yield manager
-    
+
     await manager.close_client()
 
 
@@ -30,7 +30,7 @@ async def test_manager__client_property__client_created(manager):
     client = manager.client
 
     assert isinstance(client, httpx.AsyncClient)
-    assert manager._client is not None
+    assert manager._client is not None  # pylint: disable=protected-access
 
 
 async def test_manager__second_client_call__same_client(manager):
@@ -40,9 +40,9 @@ async def test_manager__second_client_call__same_client(manager):
 
 
 async def test_manager__close_client__client_removed(manager):
-    client = manager.client
+    client = manager.client  # pylint: disable=unused-variable
     await manager.close_client()
-    assert manager._client is None
+    assert manager._client is None  # pylint: disable=protected-access
 
 
 async def test_manager__client_recreation_after_closing__client_created(manager):
@@ -50,7 +50,7 @@ async def test_manager__client_recreation_after_closing__client_created(manager)
     await manager.close_client()
 
     new_client = manager.client
-    
+
     assert isinstance(new_client, httpx.AsyncClient)
-    assert manager._client is not None
+    assert manager._client is not None  # pylint: disable=protected-access
     assert new_client is not client
