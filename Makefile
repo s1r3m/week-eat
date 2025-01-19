@@ -65,20 +65,17 @@ endif
 
 ## @App Start environment.
 start: stop
-	rm -rf $(PROJECT_PATH)/docker/app_logs && mkdir -p $(PROJECT_PATH)/docker/app_logs
-	cd $(PROJECT_PATH)/docker        && \
-		docker-compose build --pull  && \
-		docker-compose up
+	docker-compose build --pull  && \
+	docker-compose up
 stop:
-	cd $(PROJECT_PATH)/docker && \
-		docker-compose kill   && \
-		docker-compose down --volumes
+	docker-compose kill   && \
+	docker-compose down --volumes
 
 in:
-	docker exec -it week-eat-planner bash
+	docker exec -it backend-1 bash
 
 reload:
-	cd docker && docker-compose restart week-eat-planner
+	cd docker && docker-compose restart backend-1
 
 
 be_debug: $(VENV_ACTIVATE)
@@ -90,7 +87,7 @@ be_debug: $(VENV_ACTIVATE)
 ## @Tests Run linters.
 lint: $(VENV_ACTIVATE)
 	black --config $(BE_PATH)/pyproject.toml --check --diff --color $(BE_PATH)
-	pylint --rcfile $(BE_PATH)/pyproject.toml $(BE_PATH)/week_eat_planner $(BE_PATH)/tests $(BE_PATH)/settings.py
+	pylint --rcfile $(BE_PATH)/pyproject.toml $(BE_PATH)/
 	mypy --config-file $(BE_PATH)/pyproject.toml $(BE_PATH)
 
 ## @Tests Run code formatter.

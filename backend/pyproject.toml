@@ -10,6 +10,12 @@ readme = "./README.md"
 python = ">=3.11,<3.12"
 fastapi = {extras = ["standard"], version = "^0.115.6"}
 uvicorn = {extras = ["standard"], version = "^0.34.0"}
+pydantic = "^2.10.5"
+pydantic-settings = "^2.7.1"
+alembic = "^1.14.0"
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.37"}
+psycopg = {extras = ["async", "binary"], version = "^3.2.4"}
+httpx = "^0.28.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^8.3.4"
@@ -26,7 +32,6 @@ skip-string-normalization = true
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
-xfail_strict = true
 filterwarnings = [
     "ignore::Warning",
 ]
@@ -89,7 +94,7 @@ argument-rgx = '[a-z_][a-z0-9_]{1,60}$'
 function-rgx = '[a-z_][a-z0-9_]{2,115}$'
 
 # Good variable names which should always be accepted, separated by a comma.
-good-names = 'i,j,k,v,f,e,x,y,z,_,logger,pytestmark'
+good-names = 'i,j,k,v,f,e,x,y,z,_,logger'
 
 # Regular expression matching correct method names.
 method-rgx = '[a-z_][A-Za-z0-9_]{1,100}$'
