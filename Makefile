@@ -91,7 +91,7 @@ lint: $(VENV_ACTIVATE)
 
 ## @Checks Run code formatter.
 style: $(VENV_ACTIVATE)
-	black $(BE_PATH)
+	black --config $(BE_PATH)/pyproject.toml $(BE_PATH)
 
 ## @Tests Run be unittests.
 be_test: $(VENV_ACTIVATE)
