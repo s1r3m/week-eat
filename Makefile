@@ -72,14 +72,13 @@ stop:
 	docker-compose down --volumes
 
 in:
-	docker exec -it backend-1 bash
-
-reload:
-	cd docker && docker-compose restart backend-1
-
+	docker exec -it week-eat-planner-backend-1 bash
 
 be_debug: $(VENV_ACTIVATE)
 	cd $(BE_PATH) && uvicorn week_eat_planner.main:app --host 0.0.0.0 --port 8000
+
+shell:
+	psql -h localhost -U wep -d wep 
 
 
 ## ------------------------------------------------ TESTS --------------------------------------------------------------
@@ -87,7 +86,7 @@ be_debug: $(VENV_ACTIVATE)
 ## @Tests Run linters.
 lint: $(VENV_ACTIVATE)
 	black --config $(BE_PATH)/pyproject.toml --check --diff --color $(BE_PATH)
-	pylint --rcfile $(BE_PATH)/pyproject.toml $(BE_PATH)/
+	pylint --rcfile $(BE_PATH)/pyproject.toml $(BE_PATH) --output-format=colorized
 	mypy --config-file $(BE_PATH)/pyproject.toml $(BE_PATH)
 
 ## @Tests Run code formatter.

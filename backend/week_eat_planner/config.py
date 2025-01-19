@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     BOT_TOKEN: str
     TG_API_SITE: str
 
-    model_config = SettingsConfigDict(env_file=Path(__file__).parents[2] / '.env')
+    model_config = SettingsConfigDict(env_file=Path(__file__).parents[1] / '.env')
 
     def get_webhook_url(self) -> str:
         return f'{self.BE_HOST}/webhook'
