@@ -63,35 +63,35 @@ endif
 
 ## ------------------------------------------------ APP ----------------------------------------------------------------
 
-## @App Start environment.
+## @App Start the environment.
 start: stop
 	docker-compose build --pull  && \
 	docker-compose up
+
+## @App Stop the environment.
 stop:
 	docker-compose kill   && \
 	docker-compose down --volumes
 
+## @App SSH to backend container.
 in:
 	docker exec -it week-eat-planner-backend-1 bash
 
-be_debug: $(VENV_ACTIVATE)
-	cd $(BE_PATH) && uvicorn week_eat_planner.main:app --host 0.0.0.0 --port 8000
-
-shell:
-	psql -h localhost -U wep -d wep 
-
+## @App Connect to database.
+db_shell:
+	PGPASSWORD=wep psql -h localhost -U wep -d wep
 
 ## ------------------------------------------------ TESTS --------------------------------------------------------------
 
-## @Tests Run linters.
+## @Checks Run linters.
 lint: $(VENV_ACTIVATE)
 	black --config $(BE_PATH)/pyproject.toml --check --diff --color $(BE_PATH)
 	pylint --rcfile $(BE_PATH)/pyproject.toml $(BE_PATH) --output-format=colorized
 	mypy --config-file $(BE_PATH)/pyproject.toml $(BE_PATH)
 
-## @Tests Run code formatter.
+## @Checks Run code formatter.
 style: $(VENV_ACTIVATE)
-	black $(BE_PATH)
+	black --config $(BE_PATH)/pyproject.toml $(BE_PATH)
 
 ## @Tests Run be unittests.
 be_test: $(VENV_ACTIVATE)
@@ -135,7 +135,7 @@ help:
 					print "Targets: " \
 				} else { \
 					gsub("_", " ", cat); \
-					printf "\nTargets %s:\n", cat; \
+					printf "\%s:\n", cat; \
 				} \
 			} \
 			print $$2 \
