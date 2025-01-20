@@ -1,8 +1,18 @@
+import asyncio
 import pytest
 import pytest_asyncio
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from week_eat_planner.dao.session_maker_fast_api import DatabaseSession
+
+
+@pytest.fixture(scope='module', autouse=True)
+def loop():
+    loop = asyncio.new_event_loop()
+
+    yield loop
+
+    loop.close()
 
 
 @pytest_asyncio.fixture

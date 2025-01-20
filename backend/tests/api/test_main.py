@@ -1,13 +1,4 @@
-from fastapi.testclient import TestClient
-import pytest
-
 from week_eat_planner.config import settings
-from week_eat_planner.main import app
-
-
-@pytest.fixture
-def client():
-    return TestClient(app)
 
 
 def test_settings__always__settings_present():

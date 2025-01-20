@@ -8,7 +8,7 @@ import pytest_asyncio
 from week_eat_planner.dao.async_client import HttpClientManager
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='module', autouse=True)
 def loop():
     loop = asyncio.new_event_loop()
 
